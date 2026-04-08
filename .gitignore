@@ -1,0 +1,70 @@
+# === Data & Datasets ===
+data/
+*.csv
+*.xlsx
+*.xml
+
+# === Python ===
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+
+# === Virtual Environments ===
+venv/
+ENV/
+env/
+.venv
+
+# === IDE ===
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# === Jupyter ===
+.ipynb_checkpoints/
+*.ipynb_checkpoints
+
+# === Logs & Temp ===
+*.log
+*.tmp
+*.bak
+*.swp
+
+# === Test Results ===
+test_results_*.txt
+.coverage
+htmlcov/
+
+# === Ollama & Models ===
+.ollama/
+models/
+ollama_cache/
+
+# === Environment Variables ===
+.env
+.env.local
+.env.*.local
+
+# === OS ===
+Thumbs.db
+.DS_Store

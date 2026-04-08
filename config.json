@@ -1,0 +1,71 @@
+{
+  "project": "RadioAI Pro",
+  "description": "Multi-agent system for radiology report analysis",
+  
+  "models": {
+    "backend": "ollama",
+    "ollama_host": "http://localhost:11434",
+    "huggingface_4bit": true,
+    "default_config": {
+      "preprocessor": "biomistral",
+      "extractor": "biomistral",
+      "structurer": "biomistral",
+      "verifier": "biomistral",
+      "med_summary": "biomistral",
+      "pat_summary": "mistral-instruct"
+    },
+    "model_registry": {
+      "biomistral": {
+        "task": "medical",
+        "context_len": 4096,
+        "instruct": false
+      },
+      "openbiollm": {
+        "task": "medical",
+        "context_len": 8192,
+        "instruct": true
+      },
+      "mistral-instruct": {
+        "task": "general",
+        "context_len": 32768,
+        "instruct": true
+      }
+    }
+  },
+
+  "pipeline": {
+    "timeout_s": 300,
+    "max_retries": 2,
+    "degraded_threshold": 0.4,
+    "fidelity_pass_threshold": 0.75
+  },
+
+  "dataset": {
+    "source": "local",
+    "path": "data/rapports_clean.csv",
+    "train_ratio": 0.7,
+    "val_ratio": 0.15,
+    "test_ratio": 0.15
+  },
+
+  "evaluation": {
+    "metrics": [
+      "rouge_l",
+      "bert_score",
+      "clinical_fidelity"
+    ],
+    "bert_model": "distilbert-base-uncased",
+    "languages": ["en", "fr"]
+  },
+
+  "ablation_study": {
+    "enabled": true,
+    "sample_size": 10,
+    "compare_timing": true
+  },
+
+  "output": {
+    "directory": "data/exports",
+    "formats": ["json", "csv", "latex"]
+  }
+}
