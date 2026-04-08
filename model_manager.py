@@ -33,8 +33,22 @@ MODEL_REGISTRY: dict[str, dict[str, Any]] = {
         "context":   4096,
         "instruct":  False,
     },
+    # Nom complet BioMistral
+    "hf.co/MaziyarPanahi/BioMistral-7B-GGUF:Q3_K_S": {
+        "ollama_id": "hf.co/MaziyarPanahi/BioMistral-7B-GGUF:Q3_K_S",
+        "task":      "medical",
+        "context":   4096,
+        "instruct":  False,
+    },
     # Agent patient : Mistral-7B-Instruct IQ3_XS (ultra-compressé)
     "mistral-instruct": {
+        "ollama_id": "hf.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF:IQ3_XS",
+        "task":      "patient",
+        "context":   8192,
+        "instruct":  True,
+    },
+    # Nom complet Mistral
+    "hf.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF:IQ3_XS": {
         "ollama_id": "hf.co/MaziyarPanahi/Mistral-7B-Instruct-v0.3-GGUF:IQ3_XS",
         "task":      "patient",
         "context":   8192,
@@ -137,7 +151,7 @@ class ModelManager:
             }
             
             logger.debug("Ollama request: model=%s", ollama_name)
-            resp = requests.post(url, json=payload, timeout=120)
+            resp = requests.post(url, json=payload, timeout=500)
             resp.raise_for_status()
             
             data = resp.json()
